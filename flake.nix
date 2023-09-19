@@ -14,15 +14,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.emacs-overlay.follows = "emacs-overlay";
     };
+
+
   };
 
-  outputs = {self, nixpkgs, ... }@attrs: {
-    nixosConfigurations = {
-      architeuthis = nixpkgs.lib.nixosSystem {
-        system = "x86_64_linux";
-        specialArgs = attrs;
-        modules = [ ./hosts/architeuthis ];
-      };
-    };
+  outputs = inputs: {
+    nixosConfigurations = import ./hosts inputs;
   };
 }
