@@ -21,11 +21,32 @@
   environment = {
     shells = with pkgs; [ zsh ];
     systemPackages = with pkgs; [
+      _1password
       _1password-gui
+      android-tools
       btop
+      clang-tools
+      discord
+      gcc
       git
-      vscode
+      go
+      gnumake
+      helix
+      lutris
+      microsoft-edge
+      obsidian
+      premid
+      python311
+      ranger
+      slack
+      steamteamviewer
+      tldr
+      valgrind
       vim
+      vscode
+      whois
+      wine
+      wget
     ];
   };
 
@@ -36,6 +57,7 @@
       driSupport = true;
       driSupport32Bit = true;
     };
+    pulseaudio.enable = false;
   };
   
   i18n = {
@@ -69,6 +91,7 @@
 
   time.timeZone = "Australia/Brisbane";
 
+  security.rtkit.enable = true;
   services = {
     pipewire = {
       enable = true;
@@ -85,11 +108,8 @@
       xkbVariant = "";
     };
   };
-
-  security.rtkit.enable = true;
   sound.enable = true;
   system.stateVersion = "23.11";
-  hardware.pulseaudio.enable = false;
 
   users.users.squed = {
     isNormalUser = true;
