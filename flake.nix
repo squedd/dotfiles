@@ -20,7 +20,7 @@
     nixosConfigurations.architeuthis = nixpkgs.lib.nixosSystem {
       system = "x86_64_linux";
       specialArgs = attrs;
-      modules = [ ./configuration.nix ];
+      modules = [ ./hosts/architeuthis/configuration.nix ];
     };
   };
 }
