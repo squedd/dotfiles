@@ -39,7 +39,8 @@
       python311
       ranger
       slack
-      steamteamviewer
+      steam
+      teamviewer
       tldr
       valgrind
       vim
