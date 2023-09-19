@@ -17,10 +17,12 @@
   };
 
   outputs = {self, nixpkgs, ... }@attrs: {
-    nixosConfigurations.architeuthis = nixpkgs.lib.nixosSystem {
-      system = "x86_64_linux";
-      specialArgs = attrs;
-      modules = [ ./hosts/architeuthis/configuration.nix ];
+    nixosConfigurations = {
+      architeuthis = nixpkgs.lib.nixosSystem {
+        system = "x86_64_linux";
+        specialArgs = attrs;
+        modules = [ ./hosts/architeuthis ];
+      };
     };
   };
 }
