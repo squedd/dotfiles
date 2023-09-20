@@ -1,6 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 
 pkgs.mkShell {
+  name = "Python Shell";
   nativeBuildInputs = with pkgs; [
     (pkgs.python3.withPackages (ps: [
       ps.pip
