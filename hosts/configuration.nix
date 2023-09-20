@@ -46,7 +46,7 @@ in
 
     system = {
         inherit stateVersion;
-    }
+    };
 
     users.users.${user} = {
         inherit description;
