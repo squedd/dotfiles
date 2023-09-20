@@ -4,6 +4,7 @@ let
 in
 {
     programs.home-manager.enable = true;
+    programs.starship.enable = true;
     programs.zsh = {
         enable = true;
         syntaxHighlighting.enable = true;
