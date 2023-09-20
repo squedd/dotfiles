@@ -3,6 +3,7 @@ let
     user = "squed";
     description = "Squid";
     locale = "en_AU.UTF-8";
+    stateVersion = "23.11";
     timeZone = "Australia/Brisbane";
     experimental-features = ["nix-command" "flakes"];
 in
@@ -43,14 +44,14 @@ in
         printing.enable = true;
     };
 
-    system.stateVersion = "23.11";
+    system = {
+        inherit stateVersion;
+    }
 
-    users = {
-        users.${user} = {
-            inherit description;
-            shell = pkgs.zsh;
-            isNormalUser = true;
-            extraGroups = [ "networkmanager" "wheel" ];
-        };
+    users.users.${user} = {
+        inherit description;
+        shell = pkgs.zsh;
+        isNormalUser = true;
+        extraGroups = [ "networkmanager" "wheel" ];
     };
 }
