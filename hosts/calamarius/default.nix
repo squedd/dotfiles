@@ -80,19 +80,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-     btop
-     discord
-     git
-     helix
-     microsoft-edge
-     notion
-     obsidian
-     tmux
-     vim
-     wget
-     vscode
-     _1password-gui
-     youtube-music
   ];
 
   home-manager.users.squed = { pkgs, ... }: {

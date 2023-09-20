@@ -23,7 +23,6 @@ in
         _1password
         _1password-gui
         android-tools
-        btop
         clang-tools
         discord
         gcc
