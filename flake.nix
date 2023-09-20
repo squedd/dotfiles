@@ -21,15 +21,7 @@
 
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, ... }: 
-    let
-      user = "squed";
-    in
-    {
-      nixosConfigurations = (
-        import ./hosts {
-          inherit home-manager;
-        }
-      );
-    };
+  outputs = inputs: {
+    nixosConfigurations = import ./hosts inputs;
+  };
 }
