@@ -38,6 +38,10 @@ in
     };
     nixpkgs.config.allowUnfree = true;
 
+    programs = {
+        zsh.enable = true;
+    };
+
     security.rtkit.enable = true;
 
     services = {
