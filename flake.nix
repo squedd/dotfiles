@@ -21,7 +21,7 @@
 
   };
 
-  outputs = inputs: {
+  outputs = inputs @ { self, nixpkgs, home-manager, ... }: {
     nixosConfigurations = import ./hosts inputs;
   };
 }
