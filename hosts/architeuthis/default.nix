@@ -8,9 +8,11 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   documentation = {
     enable = true;
@@ -107,6 +109,7 @@
       desktopManager.plasma5.enable = true;
       layout = "au";
       xkbVariant = "";
+      videoDrivers = ["nvidia"];
     };
   };
   sound.enable = true;
