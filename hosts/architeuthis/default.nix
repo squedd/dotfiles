@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, lib, pkgs, home-manager, ... }:
 {
   imports =
@@ -22,35 +18,6 @@
 
   environment = {
     shells = with pkgs; [ zsh ];
-    systemPackages = with pkgs; [
-      _1password
-      _1password-gui
-      android-tools
-      btop
-      clang-tools
-      discord
-      gcc
-      git
-      go
-      gnumake
-      helix
-      lutris
-      microsoft-edge
-      obsidian
-      premid
-      python311
-      ranger
-      slack
-      steam
-      teamviewer
-      tldr
-      valgrind
-      vim
-      vscode
-      whois
-      wine
-      wget
-    ];
   };
 
   hardware = {
