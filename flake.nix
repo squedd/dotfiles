@@ -1,13 +1,13 @@
 {
   description = "Squed's NixOS Configuration";
-
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs;
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    # laptop builds
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       flake = false;
@@ -17,8 +17,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.emacs-overlay.follows = "emacs-overlay";
     };
-
-
   };
 
   outputs = inputs: {
