@@ -1,7 +1,10 @@
 { config, pkgs, inputs, ... }:
 let
     user = "squed";
+    description = "Squid";
     locale = "en_AU.UTF-8";
+    timeZone = "Australia/Brisbane";
+    experimental-features = ["nix-command" "flakes"];
 in
 {
     i18n.extraLocaleSettings = {
@@ -17,12 +20,14 @@ in
         LC_TIME = "${locale}";
     };
 
-    time.timeZone = "Australia/Brisbane";
+    time = {
+        inherit timeZone;
+    };
 
     nix = {
         settings = {
             auto-optimise-store = true;
-            experimental-features = ["nix-command" "flakes"];
+            inherit experimental-features;
         };
         gc = {
             automatic = true;
@@ -42,9 +47,9 @@ in
 
     users = {
         users.${user} = {
+            inherit description;
             shell = pkgs.zsh;
             isNormalUser = true;
-            description = "Squid";
             extraGroups = [ "networkmanager" "wheel" ];
         };
     };
