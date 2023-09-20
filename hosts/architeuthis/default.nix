@@ -89,9 +89,8 @@
 
   programs = {
     dconf.enable = true;
-    zsh.enable = true;
     kdeconnect.enable = true;
-    starship.enable = true;
+    zsh.enable = true;
   };
 
   time.timeZone = "Australia/Brisbane";
@@ -111,6 +110,7 @@
   sound.enable = true;
   system.stateVersion = "23.11";
 
+  users.defaultUserShell = pkgs.zsh;
   users.users.squed = {
     isNormalUser = true;
     description = "Squid";
