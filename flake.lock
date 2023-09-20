@@ -244,7 +244,9 @@
     },
     "home-manager": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1695158069,
@@ -278,27 +280,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1694767346,
-        "narHash": "sha256-5uH27SiVFUwsTsqC5rs3kS7pBoNhtoy9QfTP9BmknGk=",
+        "lastModified": 1695177233,
+        "narHash": "sha256-4X48XlKIGHMTdrM/saRBns4MTXg5BNyhREco810xIdM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "ace5093e36ab1e95cb9463863491bee90d5a4183",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1695158138,
-        "narHash": "sha256-xAcJ02XHqBb+uNQk5OEGQvny1oIVLxDtj/05no0uv74=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "7fe7acd413bc03c08bb2bfcbea060f62465e86b2",
+        "rev": "48ebccddd80f0c63cd79cd425d6dbd1a3c1d8159",
         "type": "github"
       },
       "original": {
@@ -424,7 +410,7 @@
         "doom-emacs": "doom-emacs",
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs"
       }
     },
     "rotate-text": {

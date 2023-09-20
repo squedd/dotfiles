@@ -91,6 +91,7 @@
     dconf.enable = true;
     zsh.enable = true;
     kdeconnect.enable = true;
+    starship.enable = true;
   };
 
   time.timeZone = "Australia/Brisbane";

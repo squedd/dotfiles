@@ -3,7 +3,10 @@
 
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs;
-    home-manager.url = github:nix-community/home-manager;
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
