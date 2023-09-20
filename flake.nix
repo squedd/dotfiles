@@ -21,7 +21,11 @@
 
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, ... }: {
-    nixosConfigurations = import ./hosts inputs;
-  };
+  outputs = inputs @ { self, nixpkgs, home-manager, ... }: 
+    let
+      user = "squed";
+    in
+    {
+      nixosConfigurations = import ./hosts inputs;
+    };
 }
