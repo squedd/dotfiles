@@ -60,7 +60,8 @@
       driSupport = true;
       driSupport32Bit = true;
     };
-    pulseaudio.enable = false;
+    pulseaudio.enable = true;
+    pulseaudio.support32Bit = true;
   };
   
   i18n = {
@@ -96,12 +97,6 @@
 
   security.rtkit.enable = true;
   services = {
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
     printing.enable = true;    
     xserver = {
       enable = true;
