@@ -1,5 +1,4 @@
-{ config, pkgs, home-manager, ... }:
-
+{ config, lib, pkgs, home-manager, ... }:
 {
   imports = [ 
     # Include the results of the hardware scan.
@@ -15,6 +14,10 @@
     enable = true;
     man.enable = true;
     dev.enable = true;
+  };
+
+  environment = {
+    shells = with pkgs; [ zsh ];
   };
 
   hardware = {
@@ -78,15 +81,4 @@
       extraGroups = [ "networkmanager" "wheel" ];
     };
   };
-
-  environment.systemPackages = with pkgs; [
-  ];
-
-  home-manager.users.squed = { pkgs, ... }: {
-    home.packages = [ pkgs.htop-vim ];
-    home.stateVersion = "23.11";
-  };
-
-
-
 }
