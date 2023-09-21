@@ -3,16 +3,22 @@ let
     user = "squed";
 in
 {
-    programs.home-manager.enable = true;
-    programs.starship.enable = true;
-    programs.zsh = {
+    programs = {
+        direnv = {
         enable = true;
-        syntaxHighlighting.enable = true;
-        enableAutosuggestions = true;
-        enableCompletion = true;
-        initExtra = ''
-        bindkey '^f' autosuggest-accept
-        '';
+        nix-direnv.enable = true;
+        };
+        home-manager.enable = true;
+        starship.enable = true;
+        zsh = {
+            enable = true;
+            syntaxHighlighting.enable = true;
+            enableAutosuggestions = true;
+            enableCompletion = true;
+            initExtra = ''
+            bindkey '^f' autosuggest-accept
+            '';
+        };
     };
 
     home.stateVersion = "23.11";
@@ -25,6 +31,7 @@ in
         android-tools
         clang-tools
         discord
+        direnv
         gcc
         git
         go

@@ -38,15 +38,10 @@ in
     };
     nixpkgs.config.allowUnfree = true;
 
-    programs = {
-        zsh.enable = true;
-    };
-
+    programs.zsh.enable = true;
+    programs.kdeconnect.enable = true;
     security.rtkit.enable = true;
-
-    services = {
-        printing.enable = true;
-    };
+    services.printing.enable = true;
 
     system = {
         inherit stateVersion;
