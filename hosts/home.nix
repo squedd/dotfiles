@@ -3,24 +3,9 @@ let
     user = "squed";
 in
 {
-    programs = {
-        direnv = {
-        enable = true;
-        nix-direnv.enable = true;
-        };
-        home-manager.enable = true;
-        starship.enable = true;
-        zsh = {
-            enable = true;
-            syntaxHighlighting.enable = true;
-            enableAutosuggestions = true;
-            enableCompletion = true;
-            initExtra = ''
-            bindkey '^f' autosuggest-accept
-            '';
-        };
-    };
-
+    imports = [
+        ../apps/zsh.nix
+    ];
     home.stateVersion = "23.11";
     home.username = "${user}";
     home.homeDirectory = "/home/${user}";
@@ -54,4 +39,14 @@ in
         wine
         wget
     ];
+
+    programs = {
+        home-manager.enable = true;
+        direnv = {
+            enable = true;
+            nix-direnv.enable = true;
+        };
+        starship.enable = true;
+    };
+
 }
