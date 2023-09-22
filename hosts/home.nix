@@ -5,6 +5,7 @@ in
 {
     imports = [
         ../apps/zsh.nix
+        ../apps/starship.nix
     ];
     home.stateVersion = "23.11";
     home.username = "${user}";
@@ -46,7 +47,6 @@ in
             enable = true;
             nix-direnv.enable = true;
         };
-        starship.enable = true;
     };
 
 }
