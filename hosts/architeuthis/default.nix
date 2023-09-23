@@ -11,12 +11,6 @@
     efi.canTouchEfiVariables = true;
   };
 
-  documentation = {
-    enable = true;
-    man.enable = true;
-    dev.enable = true;
-  };
-
   environment = {
     shells = with pkgs; [ zsh ];
   };
