@@ -6,6 +6,10 @@
 }:
 let
     system = "x86_64_linux";
+    user = "squed";
+    home-imports = [
+        ./home.nix
+    ];
 in
 {
     architeuthis = nixpkgs.lib.nixosSystem {
@@ -16,7 +20,9 @@ in
             {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.users.squed = import ./home.nix;
+                home-manager.users.${user} = {
+                    imports = home-imports;
+                };
             }
         ];
     };
@@ -28,7 +34,9 @@ in
             {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.users.squed = import ./home.nix;
+                home-manager.users.${user} = {
+                    imports = home-imports;
+                };
             }
         ];
     };
