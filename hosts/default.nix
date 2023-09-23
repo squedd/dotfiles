@@ -2,6 +2,7 @@
     self,
     nixpkgs,
     home-manager,
+    nix-doom-emacs,
     ...
 }:
 let
@@ -9,6 +10,7 @@ let
     user = "squed";
     home-imports = [
         ./home.nix
+        nix-doom-emacs.hmModule
     ];
 in
 {

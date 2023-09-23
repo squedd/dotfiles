@@ -7,6 +7,7 @@ in
         ../apps/zsh.nix
         ../apps/starship.nix
         ../apps/nvim.nix
+        ../apps/doom-emacs.nix
     ];
     home.stateVersion = "23.11";
     home.username = "${user}";
