@@ -6,6 +6,7 @@ in
     imports = [
         ../apps/zsh.nix
         ../apps/starship.nix
+        ../apps/nvim.nix
     ];
     home.stateVersion = "23.11";
     home.username = "${user}";
