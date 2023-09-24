@@ -32,7 +32,6 @@ in
         python311
         ranger
         slack
-        steam
         teamviewer
         tldr
         valgrind
