@@ -39,7 +39,7 @@ in
         gc = {
             automatic = true;
             dates = "weekly";
-            options = "--deleted-older-than 3d";
+            options = "--delete-older-than 3d";
         };
     };
     nixpkgs.config.allowUnfree = true;
