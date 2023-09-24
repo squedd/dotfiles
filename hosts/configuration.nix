@@ -8,6 +8,12 @@ let
     experimental-features = ["nix-command" "flakes"];
 in
 {
+    documentation = {
+        enable = true;
+        man.enable = true;
+        dev.enable = true;
+    };
+
     i18n.extraLocaleSettings = {
         defaultLocale = "${locale}";
         LC_ADDRESS = "${locale}";
