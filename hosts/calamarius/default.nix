@@ -48,7 +48,10 @@
     zsh.enable = true;
   };
 
-  security.rtkit.enable = true;
+  security = {
+    rtkit.enable = true;
+    polkit.enable = true;
+  };
 
   services = {
     xserver = {
