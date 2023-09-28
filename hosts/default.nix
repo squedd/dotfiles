@@ -37,7 +37,9 @@ in
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.${user} = {
-                    imports = home-imports;
+                    imports = [
+                        ./calamarius/home.nix
+                    ];
                 };
             }
         ];

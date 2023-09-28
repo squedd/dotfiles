@@ -36,6 +36,10 @@
     networkmanager.enable = true;
   };
 
+  programs = {
+    zsh.enable = true;
+  };
+
   security.rtkit.enable = true;
 
   services = {
