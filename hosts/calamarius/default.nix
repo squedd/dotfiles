@@ -1,4 +1,4 @@
-{ config, lib, pkgs, home-manager, ... }:
+{ config, lib, pkgs, ... }:
 {
   imports = [ 
     # Include the results of the hardware scan.
@@ -18,12 +18,16 @@
   };
 
   environment = {
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
     shells = with pkgs; [ zsh ];
   };
 
   hardware = {
     steam-hardware.enable = true;
     opengl = {
+      enable = true;
       driSupport = true;
       driSupport32Bit = true;
     };
@@ -37,6 +41,10 @@
   };
 
   programs = {
+    hyprland = {
+      xwayland.enable = true;
+      enable = true;
+    };
     zsh.enable = true;
   };
 

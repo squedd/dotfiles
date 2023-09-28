@@ -2,6 +2,7 @@
     self,
     nixpkgs,
     home-manager,
+    hyprland,
     nix-doom-emacs,
     ...
 }:
@@ -39,6 +40,7 @@ in
                 home-manager.users.${user} = {
                     imports = [
                         ./calamarius/home.nix
+                        hyprland.homeManagerModules.default
                     ];
                 };
             }

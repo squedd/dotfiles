@@ -2,10 +2,14 @@
   description = "Squed's NixOS Configuration";
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs;
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprland.url = "github:hyprwm/Hyprland";
+
     # calamarius (laptop)
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 

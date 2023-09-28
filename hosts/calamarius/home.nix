@@ -7,6 +7,7 @@ in
         ../../apps/zsh.nix
         ../../apps/starship.nix
         ../../apps/nvim.nix
+        ../../apps/hypr
     ];
     home.stateVersion = "23.11";
     home.username = "${user}";
