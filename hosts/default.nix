@@ -4,6 +4,7 @@
     home-manager,
     hyprland,
     nix-doom-emacs,
+    nixos-hardware,
     ...
 }:
 let
@@ -33,6 +34,7 @@ in
         inherit system;
         modules = [
             ./calamarius
+            nixos-hardware.nixosModules.lenovo-thinkpad-t480
             home-manager.nixosModules.home-manager
             {
                 home-manager.useGlobalPkgs = true;
