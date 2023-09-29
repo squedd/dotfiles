@@ -1,40 +1,39 @@
-{ config, lib, pkgs, home-manager, ... }:
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../configuration.nix
-    ];
+  pkgs,
+  vars,
+  ...
+}:
+{
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
+  boot = {
+    loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 10;
+      };
+      efi.canTouchEfiVariables = true;
+      timeout = 1;
+    };
+  };
   
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
-
-  environment = {
-    shells = with pkgs; [ zsh ];
-    systemPackages = with pkgs; [
-      git
-      vim
-    ];
-  };
-
   hardware = {
-    steam-hardware.enable = true;
     opengl = {
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
     };
-    pulseaudio.enable = true;
-    pulseaudio.support32Bit = true;
-  };
-  
-  networking = {
-    hostName = "architeuthis";
-    networkmanager.enable = true;
+    steam-hardware.enable = true;
   };
 
+  environment = {
+    shells = with pkgs; [ zsh ];
+    systemPackages = with pkgs; [
+      discord
+    ];
+  };
 
   programs = {
     dconf.enable = true;
