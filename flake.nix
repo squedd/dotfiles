@@ -1,7 +1,7 @@
 {
   description = "Squed's NixOS Configuration";
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs;
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
