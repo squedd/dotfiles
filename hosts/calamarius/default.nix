@@ -22,6 +22,10 @@
       NIXOS_OZONE_WL = "1";
     };
     shells = with pkgs; [ zsh ];
+    systemPackages = with pkgs; [
+      git
+      vim
+    ];
   };
 
   hardware = {
