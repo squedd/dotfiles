@@ -13,6 +13,10 @@
 
   environment = {
     shells = with pkgs; [ zsh ];
+    systemPackages = with pkgs; [
+      git
+      vim
+    ];
   };
 
   hardware = {
