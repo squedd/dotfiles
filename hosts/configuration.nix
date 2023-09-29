@@ -1,52 +1,95 @@
-{ config, pkgs, inputs, ... }:
-let
-    user = "squed";
-    description = "Squid";
-    locale = "en_AU.UTF-8";
-    stateVersion = "23.11";
-    timeZone = "Australia/Brisbane";
-    experimental-features = ["nix-command" "flakes"];
-in
 {
-    documentation = {
-        enable = true;
-        man.enable = true;
-        dev.enable = true;
+    config,
+    lib,
+    pkgs,
+    inputs,
+    vars,
+    ...
+}:
+{
+    imports = (
+        import ../modules/shell
+    );
+
+    users.users.${vars.user} = {
+        isNormalUser = true;
+        extraGroups = [ "wheel" "networkmanager" ];
     };
 
-    i18n.extraLocaleSettings = {
-        defaultLocale = "${locale}";
+    time.timeZone = "Australia/Sydney";
+    i18n = {
+        defaultLocale = "en_AU.UTF-8";
     };
 
-    time = {
-        inherit timeZone;
+    security = {
+        rtkit.enable = true;
+        polkit.enable = true;
+        sudo.wheelNeedsPassword = false;
+    };
+
+    environment = {
+        systemPackages = with pkgs; [
+            # Terminal
+            btop
+            git
+            tldr
+            wget
+            
+            # Apps
+            obsidian
+            microsoft-edge
+            vscode
+        ];
+    };
+
+    programs = {
+        dconf.enable = true;
+    };
+
+    services = {
+        printing = {
+            enable = true;
+        };
+        pipewire = {
+            enable = true;
+            alsa = {
+                enable = true;
+                support32Bit = true;
+            };
+            pulse.enable = true;
+            jack.enable = true;
+        };
     };
 
     nix = {
         settings = {
             auto-optimise-store = true;
-            inherit experimental-features;
         };
         gc = {
             automatic = true;
             dates = "weekly";
             options = "--delete-older-than 3d";
         };
+        package = pkgs.nixVersions.unstable;    # Enable Flakes
+        registry.nixpkgs.flake = inputs.nixpkgs;
+        extraOptions = ''
+            experimental-features = nix-command flakes
+            keep-outputs          = true
+            keep-derivations      = true
+        '';
     };
     nixpkgs.config.allowUnfree = true;
-
-    programs.kdeconnect.enable = true;
-    security.rtkit.enable = true;
-    services.printing.enable = true;
-
     system = {
-        inherit stateVersion;
+        stateVersion = "23.11";
     };
 
-    users.users.${user} = {
-        inherit description;
-        shell = pkgs.zsh;
-        isNormalUser = true;
-        extraGroups = [ "networkmanager" "wheel" ];
+    home-manager.users.${vars.user} = {
+        home = {
+            stateVersion = "23.11";
+        };
+
+        programs = {
+            home-manager.enable = true;
+        };
     };
 }
