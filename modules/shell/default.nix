@@ -1,0 +1,4 @@
+[
+  ./zsh.nix
+  ./starship.nix
+]
