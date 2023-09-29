@@ -1,36 +1,43 @@
 {
-    self,
+    lib,
+    inputs,
     nixpkgs,
     home-manager,
     hyprland,
-    nix-doom-emacs,
     nixos-hardware,
+    nix-doom-emacs,
+    vars,
     ...
 }:
 let
     system = "x86_64_linux";
-    user = "squed";
-    home-imports = [
-        ./home.nix
-        nix-doom-emacs.hmModule
-    ];
+
+    pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+    };
+
+    lib = nixpkgs.lib;
 in
 {
-    architeuthis = nixpkgs.lib.nixosSystem {
+    architeuthis = lib.nixosSystem {
         inherit system;
+        specialArgs = {
+            inherit inputs system vars;
+            host = {
+                hostName = "archtieuthis";
+            };
+        };
         modules = [
             ./architeuthis
             home-manager.nixosModules.home-manager
             {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.users.${user} = {
-                    imports = home-imports;
-                };
             }
         ];
     };
-    calamarius = nixpkgs.lib.nixosSystem {
+    calamarius = lib.nixosSystem {
         inherit system;
         modules = [
             ./calamarius
@@ -39,7 +46,7 @@ in
             {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.users.${user} = {
+                home-manager.users.${vars.user} = {
                     imports = [
                         ./calamarius/home.nix
                         hyprland.homeManagerModules.default

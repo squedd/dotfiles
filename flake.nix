@@ -19,7 +19,21 @@
     };
   };
 
-  outputs = inputs: {
-    nixosConfigurations = import ./hosts inputs;
+  outputs = { self, nixpkgs, home-manager, hyprland, nixos-hardware, nix-doom-emacs, ... } @ inputs: 
+  let 
+    vars = {
+      user = "squed";
+    };
+  in
+  {
+    nixosConfigurations = import ./hosts {
+      inherit (nixpkgs) lib;
+      inherit inputs nixpkgs home-manager hyprland nixos-hardware nix-doom-emacs vars;
+    };
+
+    homeConfigurations = import ./nix {
+      inherit (nixpkgs) lib;
+      inherit inputs nixpkgs home-manager vars;
+    };
   };
 }
