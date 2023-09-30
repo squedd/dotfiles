@@ -41,19 +41,21 @@ in
     };
     calamarius = lib.nixosSystem {
         inherit system;
+        specialArgs = {
+            inherit inputs system vars;
+            host = {
+                hostName = "calamarius";
+            };
+        };
         modules = [
             ./calamarius
+            ./configuration.nix
             nixos-hardware.nixosModules.lenovo-thinkpad-t480
+
             home-manager.nixosModules.home-manager
             {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.users.${vars.user} = {
-                    imports = [
-                        ./calamarius/home.nix
-                        hyprland.homeManagerModules.default
-                    ];
-                };
             }
         ];
     };

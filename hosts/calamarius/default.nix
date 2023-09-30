@@ -1,30 +1,28 @@
-{ config, lib, pkgs, ... }:
+{
+  pkgs,
+  vars,
+  ...
+}:
 {
   imports = [ 
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../configuration.nix
   ];
 
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
-
-  documentation = {
-    enable = true;
-    man.enable = true;
-    dev.enable = true;
+  boot = {
+    loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 10;
+      };
+      efi.canTouchEfiVariables = true;
+      timeout = 1;
+    };
   };
 
   environment = {
-    sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-    };
     shells = with pkgs; [ zsh ];
     systemPackages = with pkgs; [
-      git
-      vim
+      discord
     ];
   };
 
@@ -35,13 +33,6 @@
       driSupport = true;
       driSupport32Bit = true;
     };
-    pulseaudio.enable = true;
-    pulseaudio.support32Bit = true;
-  };
-
-  networking = {
-    hostName = "calamarius";
-    networkmanager.enable = true;
   };
 
   programs = {
@@ -49,12 +40,6 @@
       xwayland.enable = true;
       enable = true;
     };
-    zsh.enable = true;
-  };
-
-  security = {
-    rtkit.enable = true;
-    polkit.enable = true;
   };
 
   services = {
@@ -66,4 +51,7 @@
       xkbVariant = "";
     };
   };
+  sound.enable = true;
+
+  users.defaultUserShell = pkgs.zsh;
 }
