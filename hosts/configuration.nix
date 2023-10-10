@@ -38,7 +38,7 @@
             
             # Apps
             obsidian
-            microsoft-edge
+            firefox
             vscode
         ];
     };
