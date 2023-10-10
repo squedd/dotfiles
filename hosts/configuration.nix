@@ -13,6 +13,7 @@
     );
 
     users.users.${vars.user} = {
+        shell = pkgs.fish;
         isNormalUser = true;
         extraGroups = [ "wheel" "networkmanager" ];
     };
