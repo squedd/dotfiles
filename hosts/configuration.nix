@@ -33,6 +33,7 @@
             btop
             git
             tldr
+            vim
             wget
             
             # Apps
