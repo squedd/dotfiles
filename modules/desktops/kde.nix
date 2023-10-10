@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   vars,
   ...
 }:
@@ -16,6 +15,12 @@ with lib;
   };
 
   config = mkIf (config.kde.enable) {
+    programs = {
+      kdeconnect = {
+        enable = true;
+      };
+    };
+
     services = {
       xserver = {
         enable = true;
