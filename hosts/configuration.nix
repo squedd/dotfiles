@@ -8,7 +8,8 @@
 }:
 {
     imports = (
-        import ../modules/shell
+        import ../modules/shell ++
+        import ../modules/desktops
     );
 
     users.users.${vars.user} = {
