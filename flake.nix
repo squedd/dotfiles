@@ -19,7 +19,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, nixos-hardware, nix-doom-emacs, ... } @ inputs: 
+  outputs = { self, nixpkgs, home-manager, hyprland, nixos-hardware, nix-doom-emacs, ... } @inputs: 
   let 
     vars = {
       user = "squed";
