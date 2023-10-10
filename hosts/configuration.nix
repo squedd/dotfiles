@@ -17,7 +17,7 @@
         extraGroups = [ "wheel" "networkmanager" ];
     };
 
-    time.timeZone = "Australia/Sydney";
+    time.timeZone = "Australia/Brisbane";
     i18n = {
         defaultLocale = "en_AU.UTF-8";
     };
