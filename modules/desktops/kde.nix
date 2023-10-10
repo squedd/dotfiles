@@ -9,9 +9,8 @@ with lib;
 {
   options = {
     kde = {
-      enable = mkOption {
+      enable = mkEnableOption {
         type = types.bool;
-        default = false;
       };
     };
   };
