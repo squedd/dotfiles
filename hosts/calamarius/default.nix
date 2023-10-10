@@ -7,6 +7,8 @@
   imports = [ 
     ./hardware-configuration.nix
   ];
+  # Desktop Module
+  kde.enable = true;
 
   boot = {
     loader = {
@@ -19,9 +21,13 @@
     };
   };
 
+
   environment = {
     systemPackages = with pkgs; [
+      bitwarden
       discord
+      obsidian
+      vscode
     ];
   };
 
@@ -34,23 +40,5 @@
     };
   };
 
-  programs = {
-    hyprland = {
-      xwayland.enable = true;
-      enable = true;
-    };
-  };
-
-  services = {
-    xserver = {
-      enable = true;
-      displayManager.sddm.enable = true;
-      desktopManager.plasma5.enable = true;
-      layout = "au";
-      xkbVariant = "";
-    };
-  };
   sound.enable = true;
-
-  users.defaultUserShell = pkgs.zsh;
 }
