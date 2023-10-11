@@ -23,7 +23,7 @@
   {
     nixosConfigurations = import ./hosts {
       inherit (nixpkgs) lib;
-      inherit inputs nixpkgs home-manager hyprland nixos-hardware nix-doom-emacs vars;
+      inherit inputs nixpkgs home-manager hyprland nixos-hardware vars;
     };
   };
 }
