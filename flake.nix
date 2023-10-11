@@ -12,15 +12,10 @@
 
     # calamarius (laptop)
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
-    nix-doom-emacs = {
-      url = "github:nix-community/nix-doom-emacs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, nixos-hardware, nix-doom-emacs, ... } @inputs: 
-  let 
+  outputs = { self, nixpkgs, home-manager, hyprland, nixos-hardware, ... } @inputs: 
+  let
     vars = {
       user = "squed";
     };
