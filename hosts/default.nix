@@ -5,7 +5,6 @@
     home-manager,
     hyprland,
     nixos-hardware,
-    nix-doom-emacs,
     vars,
     ...
 }:
