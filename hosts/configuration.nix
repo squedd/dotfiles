@@ -39,8 +39,9 @@
             wget
             
             # Apps
-            obsidian
+            bitwarden
             firefox
+            obsidian
             vscode
         ];
     };
