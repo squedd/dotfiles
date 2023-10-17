@@ -7,6 +7,7 @@
   imports = [
     ./hardware-configuration.nix
   ];
+  pantheon.enable = true;
 
   boot = {
     loader = {
@@ -49,8 +50,6 @@
   services = {
     xserver = {
       enable = true;
-      displayManager.sddm.enable = true;
-      desktopManager.plasma5.enable = true;
       layout = "au";
       xkbVariant = "";
       videoDrivers = ["nvidia"];
