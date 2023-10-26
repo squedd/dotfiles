@@ -1,25 +1,24 @@
-{
-    lib,
-    inputs,
+inputs @ {
+    self,
     nixpkgs,
     home-manager,
-    hyprland,
     nixos-hardware,
-    vars,
     ...
 }:
 let
+    vars = {
+        user = "squed";
+    };
     system = "x86_64_linux";
 
     pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
     };
-
     lib = nixpkgs.lib;
 in
 {
-    architeuthis = lib.nixosSystem {
+    architeuthis = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
             inherit inputs system vars;
@@ -38,7 +37,7 @@ in
             }
         ];
     };
-    calamarius = lib.nixosSystem {
+    calamarius = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
             inherit inputs system vars;
