@@ -21,16 +21,6 @@
     };
   };
 
-
-  environment = {
-    systemPackages = with pkgs; [
-      bitwarden
-      discord
-      obsidian
-      vscode
-    ];
-  };
-
   hardware = {
     steam-hardware.enable = true;
     opengl = {

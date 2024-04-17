@@ -40,8 +40,11 @@
             
             # Apps
             bitwarden
+            discord-canary
             firefox
+            google-chrome
             obsidian
+            protonmail-bridge-gui
             vscode
         ];
     };
