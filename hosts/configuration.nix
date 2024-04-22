@@ -44,12 +44,9 @@
             firefox
             google-chrome
             obsidian
-<<<<<<< Updated upstream
             protonmail-bridge-gui
-=======
             lutris
             thunderbird
->>>>>>> Stashed changes
             vscode
         ];
     };
