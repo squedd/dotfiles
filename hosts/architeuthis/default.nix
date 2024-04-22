@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   vars,
   ...
@@ -7,7 +8,7 @@
   imports = [
     ./hardware-configuration.nix
   ];
-  pantheon.enable = true;
+  kde.enable = true;
 
   boot = {
     loader = {
@@ -17,10 +18,13 @@
       };
       efi.canTouchEfiVariables = true;
       timeout = 1;
+
     };
   };
   
   hardware = {
+    opentabletdriver.enable = true;
+
     opengl = {
       enable = true;
       driSupport = true;
@@ -38,6 +42,7 @@
 
   programs = {
     dconf.enable = true;
+    gamemode.enable = true;
     kdeconnect.enable = true;
     steam = {
       enable = true;
@@ -48,11 +53,14 @@
   };
 
   services = {
+    keyd.enable = true;
     xserver = {
       enable = true;
-      layout = "au";
-      xkbVariant = "";
-      videoDrivers = ["nvidia"];
+      xkb = {
+        layout = "au";
+        variant = "";
+      };
+      videoDrivers = ["amdgpu"];
     };
   };
   sound.enable = true;

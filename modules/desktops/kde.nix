@@ -24,8 +24,7 @@ with lib;
     services = {
       xserver = {
         enable = true;
-
-        layout = "au";
+        xkb.layout = "au";
 
         displayManager = {
           sddm.enable = true;

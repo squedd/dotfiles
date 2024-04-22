@@ -6,7 +6,7 @@
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
@@ -23,6 +23,18 @@
   swapDevices = [ ];
 
   networking = with host; {
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 80 8080 443 24070 ];
+      allowedTCPPortRanges = [
+        { from = 27015; to = 27050; }
+      ];
+      allowedUDPPorts = [ 3478 ];
+      allowedUDPPortRanges = [
+        { from = 4379; to = 4380; }
+        { from = 27000; to = 27100; }
+      ];
+    };
     useDHCP = lib.mkDefault true;
     hostName = hostName;
     networkmanager.enable = true;

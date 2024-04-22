@@ -44,7 +44,12 @@
             firefox
             google-chrome
             obsidian
+<<<<<<< Updated upstream
             protonmail-bridge-gui
+=======
+            lutris
+            thunderbird
+>>>>>>> Stashed changes
             vscode
         ];
     };
@@ -54,7 +59,13 @@
     };
 
     services = {
+        avahi = {
+            enable = true;
+            nssmdns4 = true;
+            openFirewall = true;
+        };
         printing = {
+            drivers = [pkgs.brlaser ];
             enable = true;
         };
         pipewire = {
@@ -65,6 +76,19 @@
             };
             pulse.enable = true;
             jack.enable = true;
+        };
+        teamviewer.enable = true;
+        udev = {
+            packages = with pkgs; [
+                game-devices-udev-rules
+            ];
+            extraRules = ''
+            # Rules for Oryx web flashing and live training
+            KERNEL=="hidraw*", ATTRS{idVendor}=="16c0", MODE="0664", GROUP="plugdev"
+            KERNEL=="hidraw*", ATTRS{idVendor}=="3297", MODE="0664", GROUP="plugdev"
+            # Keymapp / Wally Flashing rules for the Moonlander and Planck EZ
+            SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE:="0666", SYMLINK+="stm32_dfu"
+            '';
         };
     };
 
