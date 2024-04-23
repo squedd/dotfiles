@@ -22,17 +22,11 @@ with lib;
     };
 
     services = {
+      desktopManager.plasma6.enable = true;
+      displayManager.sddm.enable = true;
       xserver = {
         enable = true;
         xkb.layout = "au";
-
-        displayManager = {
-          sddm.enable = true;
-        };
-
-        desktopManager.plasma5 = {
-          enable = true;
-        };
       };
     };
   };
