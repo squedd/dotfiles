@@ -39,6 +39,7 @@
             wget
             
             # Apps
+            beeper
             bitwarden
             discord-canary
             firefox
