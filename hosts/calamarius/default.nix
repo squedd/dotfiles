@@ -21,18 +21,6 @@
     };
   };
 
-<<<<<<< Updated upstream
-=======
-
-  environment = {
-    systemPackages = with pkgs; [
-      bitwarden
-      discord
-      vscode
-    ];
-  };
-
->>>>>>> Stashed changes
   hardware = {
     steam-hardware.enable = true;
     opengl = {
