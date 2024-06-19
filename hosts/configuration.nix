@@ -46,7 +46,7 @@
             obsidian
             protonmail-bridge-gui
             lutris
-            thunderbird
+            rustdesk
             vscode
         ];
     };
@@ -75,7 +75,6 @@
             pulse.enable = true;
             jack.enable = true;
         };
-        teamviewer.enable = true;
         udev = {
             packages = with pkgs; [
                 game-devices-udev-rules
