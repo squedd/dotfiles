@@ -42,7 +42,6 @@
             beeper
             bitwarden
             discord-canary
-            firefox
             google-chrome
             obsidian
             protonmail-bridge-gui
@@ -54,6 +53,7 @@
 
     programs = {
         dconf.enable = true;
+        firefox.enable = true;
     };
 
     services = {
