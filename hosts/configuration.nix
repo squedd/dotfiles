@@ -43,6 +43,7 @@
             bitwarden
             discord-canary
             google-chrome
+            gparted
             obsidian
             protonmail-bridge-gui
             lutris
