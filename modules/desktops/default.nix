@@ -1,4 +1,3 @@
 [
   ./kde.nix
-  ./pantheon.nix
 ]
