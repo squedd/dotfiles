@@ -7,8 +7,8 @@
   imports = [ 
     ./hardware-configuration.nix
   ];
-  # Desktop Module
   kde.enable = true;
+  steam.enable = true;
 
   boot = {
     loader = {
@@ -19,16 +19,13 @@
       efi.canTouchEfiVariables = true;
       timeout = 1;
     };
-  };
-
-  hardware = {
-    steam-hardware.enable = true;
-    opengl = {
+    plymouth = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      theme = "breeze";
     };
   };
 
-  sound.enable = true;
+  hardware = {
+    graphics.enable = true;
+  };
 }
