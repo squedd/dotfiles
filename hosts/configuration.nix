@@ -7,10 +7,11 @@
     ...
 }:
 {
-    imports = (
-        import ../modules/shell ++
-        import ../modules/desktops
-    );
+    imports = lib.pipe ../modules [
+        builtins.readDir
+        (lib.filterAttrs (name: _: lib.hasSuffix ".nix" name))
+        (lib.mapAttrsToList (name: _: ../modules + "/${name}"))
+    ];
 
     users.users.${vars.user} = {
         shell = pkgs.fish;
@@ -28,32 +29,25 @@
         polkit.enable = true;
     };
 
-    environment = {
-        systemPackages = with pkgs; [
-            # Terminal
-            btop
-            git
-            tldr
-            vim
-            wget
-            
-            # Apps
-            beeper
-            bitwarden
-            discord-canary
-            google-chrome
-            gparted
-            obsidian
-            protonmail-bridge-gui
-            lutris
-            rustdesk
-            vscode
-        ];
-    };
+    environment.systemPackages = with pkgs; [
+        # Terminal
+        git
+        vim
+        wget
+        
+        # Apps
+        beeper
+        bitwarden
+        brave
+        morgen
+        obsidian
+        quickemu
+        vscode
+    ];
 
     programs = {
+        adb.enable = true;
         dconf.enable = true;
-        firefox.enable = true;
     };
 
     services = {
@@ -63,7 +57,7 @@
             openFirewall = true;
         };
         printing = {
-            drivers = [pkgs.brlaser ];
+            drivers = [ pkgs.brlaser ];
             enable = true;
         };
         pipewire = {
@@ -75,45 +69,36 @@
             pulse.enable = true;
             jack.enable = true;
         };
-        udev = {
-            packages = with pkgs; [
-                game-devices-udev-rules
-            ];
-            extraRules = ''
-            # Rules for Oryx web flashing and live training
-            KERNEL=="hidraw*", ATTRS{idVendor}=="16c0", MODE="0664", GROUP="plugdev"
-            KERNEL=="hidraw*", ATTRS{idVendor}=="3297", MODE="0664", GROUP="plugdev"
-            # Keymapp / Wally Flashing rules for the Moonlander and Planck EZ
-            SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE:="0666", SYMLINK+="stm32_dfu"
-            '';
-        };
+        teamviewer.enable = true;
     };
 
     nix = {
         settings = {
             auto-optimise-store = true;
+        trusted-substituters = [ "https://hydra.nixos.org/" ];
         };
         gc = {
             automatic = true;
             dates = "weekly";
             options = "--delete-older-than 3d";
         };
-        package = pkgs.nixVersions.git;    # Enable Flakes
-        registry.nixpkgs.flake = inputs.nixpkgs;
+        package = pkgs.nixVersions.git;
         extraOptions = ''
             experimental-features = nix-command flakes
-            keep-outputs          = true
-            keep-derivations      = true
         '';
     };
-    nixpkgs.config.allowUnfree = true;
+    nixpkgs.config = {
+        allowUnfree = true;
+        warnUndeclaredOptions = true;
+    };
     system = {
-        stateVersion = "23.11";
+        stateVersion = "24.05";
     };
 
     home-manager.users.${vars.user} = {
         home = {
-            stateVersion = "23.11";
+            stateVersion = "24.05";
+            language.time = "en_AU";
         };
 
         programs = {
