@@ -2,7 +2,6 @@
     lib,
     inputs,
     nixpkgs,
-    nur,
     home-manager,
     nixos-hardware,
     vars,
@@ -12,7 +11,6 @@ let
     commonModules = [
         ./configuration.nix
         home-manager.nixosModules.home-manager
-        nur.nixosModules.nur
         {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
