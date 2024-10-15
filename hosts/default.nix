@@ -32,13 +32,6 @@ let
     lib = nixpkgs.lib;
 in
 {
-    architeuthis = lib.nixosSystem {
-        inherit system;
-        specialArgs = (systemArgs "architeuthis");
-        modules = commonModules ++ [
-            ./architeuthis
-        ];
-    };
     calamarius = lib.nixosSystem {
         inherit system;
         specialArgs = (systemArgs "calamarius");
