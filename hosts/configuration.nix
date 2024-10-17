@@ -43,6 +43,9 @@
         obsidian
         quickemu
         vscode
+        yubioath-flutter
+        yubikey-manager-qt
+        zeal
     ];
 
     programs = {

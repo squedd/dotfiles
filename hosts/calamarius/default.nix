@@ -9,6 +9,7 @@
   ];
   kde.enable = true;
   steam.enable = true;
+  pam.enable = true;
 
   boot = {
     loader = {
