@@ -1,42 +1,37 @@
 {
     lib,
     inputs,
-    nixpkgs,
-    home-manager,
-    nixos-hardware,
-    vars,
     ...
 }:
 let
     commonModules = [
         ./configuration.nix
-        home-manager.nixosModules.home-manager
+        inputs.home-manager.nixosModules.home-manager
         {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "hm-backup";
+            home-manager.backupFileExtension = "backup";
         }
     ];
-    system = "x86_64_linux";
+    imports = lib.pipe ../modules [
+        builtins.readDir
+        (lib.filterAttrs (name: _: lib.hasSuffix ".nix" name))
+        (lib.mapAttrsToList (name: _: ../modules + "/${name}"))
+    ];
     systemArgs = host: {
-        inherit inputs system vars;
-        host = {
-            hostName = host;
-        };
+        inherit inputs;
+        user = "squed";
+        host.hostName = host;
     };
-    pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-    };
-    lib = nixpkgs.lib;
+    laptop = "calamarius";
 in
 {
-    calamarius = lib.nixosSystem {
-        inherit system;
-        specialArgs = (systemArgs "calamarius");
-        modules = commonModules ++ [
-            ./calamarius
-            nixos-hardware.nixosModules.lenovo-thinkpad-t480
+
+    ${laptop} = lib.nixosSystem {
+        specialArgs = (systemArgs laptop);
+        modules = commonModules ++ imports ++ [
+            ./${laptop}
+            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
         ];
     };
 }
