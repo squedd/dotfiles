@@ -1,27 +1,14 @@
 {
-  config,
-  lib,
   ...
 }:
-with lib;
 {
-  options = {
-    kde = {
-      enable = mkEnableOption {
-        type = types.bool;
-      };
-    };
-  };
-
-  config = mkIf (config.kde.enable) {
-    programs.kdeconnect.enable = true;
-    services = {
-      desktopManager.plasma6.enable = true;
-      displayManager.sddm.enable = true;
-      xserver = {
-        enable = true;
-        xkb.layout = "au";
-      };
+  programs.kdeconnect.enable = true;
+  services = {
+    desktopManager.plasma6.enable = true;
+    displayManager.sddm.enable = true;
+    xserver = {
+      enable = true;
+      xkb.layout = "au";
     };
   };
 }
