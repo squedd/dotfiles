@@ -24,6 +24,7 @@ let
         host.hostName = host;
     };
     laptop = "calamarius";
+    laptop2 = "sepioteuthis";
 in
 {
 
@@ -32,6 +33,13 @@ in
         modules = commonModules ++ imports ++ [
             ./${laptop}
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
+        ];
+    };
+    ${laptop2} = lib.nixosSystem {
+        specialArgs = (systemArgs laptop2);
+        modules = commonModules ++ imports ++ [
+            ./${laptop2}
+            inputs.nixos-hardware.nixosModules.framework-13-7040-amd
         ];
     };
 }
