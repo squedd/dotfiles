@@ -1,19 +1,10 @@
 {
-    config,
-    lib,
     pkgs,
-    inputs,
-    vars,
+    specialArgs,
     ...
 }:
 {
-    imports = lib.pipe ../modules [
-        builtins.readDir
-        (lib.filterAttrs (name: _: lib.hasSuffix ".nix" name))
-        (lib.mapAttrsToList (name: _: ../modules + "/${name}"))
-    ];
-
-    users.users.${vars.user} = {
+    users.users.${specialArgs.user} = {
         shell = pkgs.fish;
         isNormalUser = true;
         extraGroups = [ "wheel" "networkmanager" ];
@@ -38,8 +29,8 @@
         # Apps
         beeper
         bitwarden
-        brave
-        morgen
+        firefox
+        google-chrome
         obsidian
         quickemu
         vscode
@@ -49,8 +40,9 @@
     ];
 
     programs = {
-        adb.enable = true;
-        dconf.enable = true;
+        direnv.enable = true;
+        appimage.binfmt = true;
+        yazi.enable = true;
     };
 
     services = {
@@ -98,7 +90,7 @@
         stateVersion = "24.05";
     };
 
-    home-manager.users.${vars.user} = {
+    home-manager.users.${specialArgs.user} = {
         home = {
             stateVersion = "24.05";
             language.time = "en_AU";
