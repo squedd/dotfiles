@@ -7,7 +7,7 @@
     users.users.${specialArgs.user} = {
         shell = pkgs.fish;
         isNormalUser = true;
-        extraGroups = [ "wheel" "networkmanager" ];
+        extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
     };
 
     time.timeZone = "Australia/Brisbane";
@@ -26,23 +26,29 @@
         vim
         wget
         
-        # Apps
+        # App
         beeper
         bitwarden
-        firefox
+        bottles
+        discord-canary
         google-chrome
         obsidian
-        quickemu
+        solaar
+        (vivaldi.overrideAttrs
+            (oldAttrs: {
+                dontWrapQtApps = false;
+                dontPatchELF = true;
+                nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [pkgs.kdePackages.wrapQtAppsHook];
+            }))
+        virt-viewer
         vscode
         yubioath-flutter
-        yubikey-manager-qt
         zeal
     ];
 
     programs = {
-        direnv.enable = true;
         appimage.binfmt = true;
-        yazi.enable = true;
+        direnv.enable = true;
     };
 
     services = {
@@ -64,7 +70,6 @@
             pulse.enable = true;
             jack.enable = true;
         };
-        teamviewer.enable = true;
     };
 
     nix = {
@@ -77,7 +82,7 @@
             dates = "weekly";
             options = "--delete-older-than 3d";
         };
-        package = pkgs.nixVersions.git;
+        package = pkgs.nixVersions.latest;
         extraOptions = ''
             experimental-features = nix-command flakes
         '';
