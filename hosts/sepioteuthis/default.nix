@@ -5,14 +5,19 @@
 {
   imports = [ 
     ./hardware-configuration.nix
-    ../../modules/kde.nix
-    ../../modules/tailscale.nix
-    ../../modules/services.nix
+    ../../nixosModules/kde.nix
+    ../../nixosModules/services/tailscale.nix
+    ../../nixosModules/boot.nix
   ];
 
-  hardware.graphics.enable = true;
-   hardware.bluetooth = {
-    enable = true;
-     powerOnBoot = true;
+  hardware = {
+    graphics.enable = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+    logitech.wireless.enable = true;
   };
+
+  services.teamviewer.enable = true;
 }

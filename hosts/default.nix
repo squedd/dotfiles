@@ -6,17 +6,13 @@
 let
     commonModules = [
         ./configuration.nix
+        ../nixosModules
         inputs.home-manager.nixosModules.home-manager
         {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
         }
-    ];
-    imports = lib.pipe ../modules [
-        builtins.readDir
-        (lib.filterAttrs (name: _: lib.hasSuffix ".nix" name))
-        (lib.mapAttrsToList (name: _: ../modules + "/${name}"))
     ];
     systemArgs = host: {
         inherit inputs;
@@ -30,14 +26,14 @@ in
 
     ${laptop} = lib.nixosSystem {
         specialArgs = (systemArgs laptop);
-        modules = commonModules ++ imports ++ [
+        modules = commonModules ++ [
             ./${laptop}
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
         ];
     };
     ${laptop2} = lib.nixosSystem {
         specialArgs = (systemArgs laptop2);
-        modules = commonModules ++ imports ++ [
+        modules = commonModules ++ [
             ./${laptop2}
             inputs.nixos-hardware.nixosModules.framework-13-7040-amd
         ];
