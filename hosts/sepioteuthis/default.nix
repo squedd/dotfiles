@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ../../nixosModules/kde.nix
     ../../nixosModules/services/tailscale.nix
+    ../../nixosModules/services/xremap.nix
     ../../nixosModules/boot.nix
   ];
 
@@ -16,8 +17,5 @@
       enable = true;
       powerOnBoot = true;
     };
-    logitech.wireless.enable = true;
   };
-
-  services.teamviewer.enable = true;
 }

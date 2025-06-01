@@ -7,9 +7,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    xremap-flake.url = "github:xremap/nix-flake";
+
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-hardware, ... } @inputs: 
+  outputs = { self, nixpkgs, home-manager, nixos-hardware, xremap-flake, ... } @inputs: 
   {
     nixosConfigurations = (
       import ./hosts {
