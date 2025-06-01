@@ -13,28 +13,20 @@ let
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
         }
+        inputs.xremap-flake.nixosModules.default
     ];
     systemArgs = host: {
         inherit inputs;
         user = "squed";
         host.hostName = host;
     };
-    laptop = "calamarius";
-    laptop2 = "sepioteuthis";
+    laptop = "sepioteuthis";
 in
 {
-
     ${laptop} = lib.nixosSystem {
         specialArgs = (systemArgs laptop);
         modules = commonModules ++ [
             ./${laptop}
-            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
-        ];
-    };
-    ${laptop2} = lib.nixosSystem {
-        specialArgs = (systemArgs laptop2);
-        modules = commonModules ++ [
-            ./${laptop2}
             inputs.nixos-hardware.nixosModules.framework-13-7040-amd
         ];
     };
