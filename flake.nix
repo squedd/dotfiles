@@ -1,22 +1,21 @@
 {
   description = "Squed's NixOS Configuration";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-cli.url = "github:nix-community/nixos-cli";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     xremap-flake.url = "github:xremap/nix-flake";
-
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-hardware, xremap-flake, ... } @inputs: 
+  outputs = inputs@ {self, nixpkgs, ...}:
   {
     nixosConfigurations = (
       import ./hosts {
-        inherit inputs;
-        inherit (nixpkgs) lib;
+        inherit (self) inputs outputs;
       }
     );
   };

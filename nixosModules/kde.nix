@@ -9,6 +9,7 @@
     xserver = {
       enable = true;
       xkb.layout = "au";
+      xkb.variant = "";
     };
   };
 }
