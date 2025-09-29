@@ -1,19 +1,18 @@
 {
-    lib,
     inputs,
     ...
 }:
 let
+    lib = inputs.nixpkgs.lib;
     commonModules = [
-        ./configuration.nix
-        ../nixosModules
         inputs.home-manager.nixosModules.home-manager
         {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
         }
-        inputs.xremap-flake.nixosModules.default
+        inputs.nixos-cli.nixosModules.nixos-cli
+        ../nixosModules
     ];
     systemArgs = host: {
         inherit inputs;
