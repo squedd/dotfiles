@@ -5,41 +5,62 @@
     ];
   
   boot = {
-    loader = {
-        efi.canTouchEfiVariables = true;
-        timeout = 0;
-        systemd-boot = {
-            enable = true;
-            configurationLimit = 10;
-        };
-    };
     initrd = {
-      availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" ];
+      availableKernelModules = [
+        "thunderbolt"
+        "nvme" 
+        "xhci_pci"
+        "usb_storage"
+        "sd_mod"
+        "amdgpu"
+      ];
     };
-    kernelParams = [
-      "amd_iommu=on"
-      "amdgpu.ppfeaturemask=0xf7fff"
-      "amdgpu.dc=1"
-      "boot.shell_on_fail"
-      "loglevel=3"
-      "rd.systemd.show_status=false"
-      "rd.udev.log_level=3"
-      "udev.log_priority=3"
-      # "pcie_acs_override=downstream,multifunction"
+    kernelModules = [
+      "thunderbolt"
+      "nvme" 
+      "xhci_pci"
+      "usb_storage"
+      "sd_mod"
+      "amdgpu"
     ];
-    kernelModules = [ "amdgpu" ];
-    blacklistedKernelModules = [ "kvm-amd" ];
-    # kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
-    # # ADT-Link UT3G ids with dGPU
-    # extraModprobeConfig = "options vfio-pci ids=1002:7590,1002:ab40";
-    # postBootCommands = ''
-    #   DEVS="0000:07:00.0 0000:07:00.1"
+    kernelPackages = pkgs.linuxPackages_zen;
+    loader = {
+      efi.canTouchEfiVariables = false;
+      timeout = 3;
+      systemd-boot = {
+        enable = lib.mkDefault true;
+        configurationLimit = 5;
+      };
+    };
+  };
 
-    #   for DEV in $DEVS; do
-    #     echo "vfio-pci" > /sys/bus/pci/devices/$DEV/driver_override
-    #   done
-    #   modprobe -i vfio-pci
-    # '';
+  hardware = {
+    amdgpu = {
+      opencl.enable = true;
+      initrd.enable = true;
+      overdrive.enable = true;
+    };
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      settings = {
+        General = {
+          Experimental = true;
+          FastConnectable = true;
+        };
+        Policy = {
+          AutoEnable = true;
+        };
+      };
+    };
+    fw-fanctrl = {
+      enable = true;
+      config.defaultStrategy = "lazy";
+    };
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
   };
 
   fileSystems."/" =
