@@ -16,11 +16,11 @@ with lib;
 
   config = mkIf (config.pam.enable) {
     security.pam.services = {
-      login.u2fAuth = true;
-      sudo.u2fAuth = true;
+      login.u2fAuth = lib.mkDefault true;
+      sudo.u2fAuth = lib.mkDefault true;
     };
     # smart card
-    services.pcscd.enable = true;
+    services.pcscd.enable = lib.mkDefault true;
     # lock screen when yubikey is unplugged
     services.udev.extraRules = ''
       ACTION=="remove",\
