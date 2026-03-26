@@ -1,16 +1,5 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
-{
-  options = {
-    fish.enable =
-      lib.mkEnableOption "Enables the Fish Shell";
-  };
-
-  config = lib.mkIf config.fish.enable {
+{ self, inputs, ...}: {
+	flake.nixosModules.fish = { pkgs, ...  }: {
     programs.fish = {
       enable = true;
       interactiveShellInit = ''
