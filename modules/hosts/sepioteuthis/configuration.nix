@@ -10,6 +10,7 @@
       self.nixosModules.sepioteuthisHardware
       self.nixosModules.commonPackages
       self.nixosModules.fish
+      self.nixosModules.nh
       self.nixosModules.neovim
       self.nixosModules.vscode
       self.nixosModules.steam

@@ -12,6 +12,7 @@
 
         self.nixosModules.vivaldi
         self.nixosModules.fish
+        self.nixosModules.nh
         self.nixosModules.vscode
         self.nixosModules.localisation
       ];
