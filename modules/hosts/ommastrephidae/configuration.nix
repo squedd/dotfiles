@@ -7,7 +7,7 @@
   };
 
   flake.nixosModules.ommastrephidae = { config, pkgs, ... }: {
-    imports = with self.nixosConfigurations; [
+    imports = with self.nixosModules; [
       ommastrephidaeHardware
       localisation      
     ];
