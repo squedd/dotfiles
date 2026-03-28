@@ -28,6 +28,12 @@
       };
     };
 
+    services.handheld-daemon = {
+      enable = true;
+      user = "squed";
+      ui.enable = true;
+    };
+
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
