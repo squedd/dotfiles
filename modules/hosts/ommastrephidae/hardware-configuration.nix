@@ -8,6 +8,8 @@
     boot.initrd.kernelModules = [ ];
     boot.kernelModules = [ "kvm-amd" ];
     boot.extraModulePackages = [ ];
+    kernelPackages = pkgs.linuxPackages_6_18;
+    hardware.bolt.enable = true;
 
     fileSystems."/" =
       { device = "/dev/disk/by-uuid/ea95919f-4cad-46f6-8674-f9574dcc415e";
