@@ -8,7 +8,7 @@
     boot.initrd.kernelModules = [ ];
     boot.kernelModules = [ "kvm-amd" ];
     boot.extraModulePackages = [ ];
-    kernelPackages = pkgs.linuxPackages_6_18;
+    boot.kernelPackages = pkgs.linuxPackages_6_18;
     services.hardware.bolt.enable = true;
 
     fileSystems."/" =
